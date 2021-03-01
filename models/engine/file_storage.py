@@ -36,14 +36,16 @@ class FileStorage:
 
     def all(self):
         """
-        returns the dictionary __objects
+        Returns the __objects
         """
+
         return FileStorage.__objects
 
     def new(self, obj):
         """
-        sets in the __objects dictionary with the
-        key <obj class name>.id
+        Adds the new object to the __objects var
+        Args
+            @obj: the object to be added
         """
 
         FileStorage.__objects["{}.{}".format(obj.__class__.__name__,
@@ -51,8 +53,9 @@ class FileStorage:
 
     def save(self):
         """
-        serializes __objects to the json file(path: __file_path)
+            Serializes __objects to the json file at __file_path
         """
+
         obj_dict = {
             key: value.to_dict()
             for key, value in FileStorage.__objects.items()
@@ -61,8 +64,11 @@ class FileStorage:
             json.dump(obj_dict, json_file)
 
     def reload(self):
-        """deserializes the JSON file to _objects (only if the JSON file
-       (__file_path) exists otherwise do nothing
+        """
+            deserializes the JSON file to __objects
+            (only if the JSON file (__file_path) exists ;
+            otherwise, do nothing. If the file doesn’t exist,
+            no exception is raised)
         """
 
         try:
@@ -72,6 +78,7 @@ class FileStorage:
                     cls = eval(obj_str["__class__"])
                     new_obj = cls(**obj_str)
                     self.new(new_obj)
-                               
+
         except FileNotFoundError:
             pass
+
