@@ -70,7 +70,7 @@ you can use isoformat() of datetime object
         """
         updates the public instance attribute with current datetime
         """
-        self.update_at = datetime.today()
+        self.update_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
