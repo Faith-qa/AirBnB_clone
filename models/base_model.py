@@ -45,7 +45,7 @@ you can use isoformat() of datetime object
         TIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
 
         self.id = str(uuid4())
-        self.created_at = datetime.now()
+        self.created_at = datetime.today()
         self.updated_at = self.created_at
 
         if len(kwargs) != 0:
@@ -70,7 +70,7 @@ you can use isoformat() of datetime object
         """
         updates the public instance attribute with current datetime
         """
-        self.update_at = datetime.now()
+        self.update_at = datetime.today()
         models.storage.save()
 
     def to_dict(self):
