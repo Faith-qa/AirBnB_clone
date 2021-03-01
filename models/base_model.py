@@ -77,9 +77,9 @@ you can use isoformat() of datetime object
         """
         returns a dictionary containing all keys/values of __dict__
         """
-        a_dict = self.__dict__
+        
         dict_str = {}
-        for key, value in a_dict.items():
+        for key, value in self.__dict__.items():
                if key == "created_at" or key == "updated_at":
                    dict_str[key] = value.isoformat()
                else:
