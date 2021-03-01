@@ -17,7 +17,13 @@ defines all common attributes from other classes:
 
     # creating a BaseModel from dictionary
     def __init__(self, *args, **kwargs):
-        """initializing an instance"""
+        """
+        Initlizes the public attributes of the instance after creation
+        Args:
+            *args (any): Unused.
+            **kwargs (dict): Key/value pairs of attributes.
+        """
+
         TIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
 
         self.id = str(uuid4())
@@ -34,13 +40,11 @@ defines all common attributes from other classes:
                     self.__dict__[key] = value
         else:
             models.storage.new(self)
-        
 
     def __str__(self):
         """
         returns the string representation of a class
-        """
-        
+        """        
         return ("[{}] ({}) {}".format(self.__class__.__name__, self.id,
                                       self.__dict__))
 
