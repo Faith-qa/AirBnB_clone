@@ -67,6 +67,10 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, "r") as json_file:
                 obj_dict = json.load(json_file)
-                return obj_dict
+                for obj_str in obj_dict.values():
+                    cls = eval(obj_str["__class__"])
+                    new_obj = cls(**obj_str)
+                    self.new(new_obj)
+                               
         except:
             pass
