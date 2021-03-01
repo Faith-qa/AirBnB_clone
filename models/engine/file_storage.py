@@ -64,6 +64,7 @@ class FileStorage:
         """deserializes the JSON file to _objects (only if the JSON file
        (__file_path) exists otherwise do nothing
         """
+
         try:
             with open(FileStorage.__file_path, "r") as json_file:
                 obj_dict = json.load(json_file)
@@ -72,5 +73,5 @@ class FileStorage:
                     new_obj = cls(**obj_str)
                     self.new(new_obj)
                                
-        except:
+        except FileNotFoundError:
             pass
