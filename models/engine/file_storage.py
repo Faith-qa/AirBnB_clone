@@ -4,7 +4,7 @@ defines a FileStorage class that will be used
 to serialize instances to a json file and desiserialize json file
 to an instance
 """
-import models
+from models.base_model import BaseModel
 import json
 
 
@@ -31,6 +31,7 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    
     def __init__(self):
         pass
 
@@ -74,11 +75,8 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, "r") as json_file:
                 obj_dict = json.load(json_file)
-                for obj_str in obj_dict.values():
-                    cls = eval(obj_str["__class__"])
-                    new_obj = cls(**obj_str)
-                    self.new(new_obj)
-
-        except FileNotFoundError:
+                
+               
+        except:
             pass
 

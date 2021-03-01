@@ -77,14 +77,10 @@ you can use isoformat() of datetime object
         """
         returns a dictionary containing all keys/values of __dict__
         """
-        
-        dict_str = {}
+        dict_repr = {}
         for key, value in self.__dict__.items():
-               if key == "created_at" or key == "updated_at":
-                   dict_str[key] = value.isoformat()
-               else:
-                   dict_str[key] = value
-                   
-        dict_str["__class__"] = self.__class__.__name__
-
-        return dict_str
+            dict_repr[key] = value
+            if isinstance(value, datetime):
+                dict_repr[key] = value.strftime('%Y-%m-%dT%H:%M:%S.%f')
+        dict_repr["__class__"] = type(self).__name__
+        return dict_repr
