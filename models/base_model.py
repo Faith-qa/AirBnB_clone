@@ -45,7 +45,7 @@ you can use isoformat() of datetime object
         TIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
 
         self.id = str(uuid4())
-        self.created_at = datetime.()
+        self.created_at = datetime.now()
         self.updated_at = self.created_at
 
         if len(kwargs) != 0:
